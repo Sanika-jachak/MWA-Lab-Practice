@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+        .container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .form-group input:focus {
+            border-color: #007BFF;
+            outline: none;
+        }
+        .btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Registration Form</h2>
+        <form id="registrationForm">
+            <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username">
+                <div id="usernameError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email">
+                <div id="emailError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password">
+                <button type="button" id="togglePassword">Show</button>
+                <div id="passwordError" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+                <div id="dobError" class="error"></div>
+            </div>
+            <button type="button" class="btn" id="registerBtn">Register</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('registerBtn').addEventListener('click', function() {
+            // Clear previous errors
+            document.getElementById('usernameError').textContent = '';
+            document.getElementById('emailError').textContent = '';
+            document.getElementById('passwordError').textContent = '';
+            document.getElementById('dobError').textContent = '';
+
+            let hasError = false;
+
+            // Validate username
+            const username = document.getElementById('username').value;
+            if (username.length < 3) {
+                document.getElementById('usernameError').textContent = 'Username must be at least 3 characters long.';
+                hasError = true;
+            }
+
+            // Validate email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'Please enter a valid email address.';
+                hasError = true;
+            }
+
+            // Validate password
+            const password = document.getElementById('password').value;
+            if (password.length < 6) {
+                document.getElementById('passwordError').textContent = 'Password must be at least 6 characters long.';
+                hasError = true;
+            }
+
+            // Validate date of birth
+            const dob = document.getElementById('dob').value;
+            if (!dob) {
+                document.getElementById('dobError').textContent = 'Please select your date of birth.';
+                hasError = true;
+            }
+
+            if (!hasError) {
+                alert('Registration successful!');
+
+                // Clear form
+                document.getElementById('registrationForm').reset();
+            }
+        });
+
+        document.getElementById('togglePassword').addEventListener('click', function() {
+            const passwordField = document.getElementById('password');
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+            this.textContent = type === 'password' ? 'Show' : 'Hide';
+        });
+    </script>
+</body>
+</html>

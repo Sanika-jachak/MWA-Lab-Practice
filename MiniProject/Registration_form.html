@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fusion Hub - Register</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        body {
+            background-color: #f4f4f4;
+            text-align: center;
+            scroll-behavior: smooth;
+        }
+        header {
+            background: linear-gradient(90deg, #ff6a00, #ee0979);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+            font-size: 32px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: #222;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            transition: 0.3s;
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        nav a:hover {
+            background-color: #ff6a00;
+        }
+        .container {
+            background: white;
+            width: 400px;
+            margin: 50px auto;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .container h2 {
+            text-align: center;
+            color: #ee0979;
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 10px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        button {
+            width: 100%;
+            background: #ff6a00;
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #ee0979;
+        }
+        footer {
+            background: #222;
+            color: white;
+            padding: 25px;
+            margin-top: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        Fusion Hub - Register Now!
+    </header>
+
+    <nav>
+        <a href="login.html">Home</a>
+        <a href="PastEvents.html">Past Events</a>
+        <a href="upcoming.html">Upcoming Events</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <div class="container">
+        <h2>Event Registration</h2>
+        <form id="registrationForm">
+            <label for="name">Full Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10}">
+
+            <label for="event">Select Event</label>
+            <select id="event" name="event" required>
+                <option value="">--Choose an Event--</option>
+                <option value="Tech Conference">Tech Conference</option>
+                <option value="Music Fest">Music Fest</option>
+                <option value="Art Workshop">Art Workshop</option>
+            </select>
+
+            <button type="submit">Register Now</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("registrationForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let phone = document.getElementById("phone").value;
+            let eventName = document.getElementById("event").value;
+
+            if (name && email && phone && eventName) {
+                alert("Registration Successful! Thank you, " + name + ".");
+                this.reset(); // Clear the form after submission
+            } else {
+                alert("Please fill all fields correctly.");
+            }
+        });
+    </script>
+
+</body>
+</html>
